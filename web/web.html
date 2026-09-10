@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB GAMES - عالم أخبار الألعاب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-color: #7b1fa2;
+            --brand-dark: #4a148c;
+            --brand-light: #f3e5f5;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-white: #ffffff;
+            --card-bg: #f9fafb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand-color));
+            color: white;
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--brand-light);
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--brand-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--brand-color);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(123, 31, 162, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 180px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--brand-color);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-snippet {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .btn-read {
+            align-self: flex-start;
+            background-color: transparent;
+            color: var(--brand-color);
+            border: 2px solid var(--brand-color);
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-read:hover {
+            background-color: var(--brand-color);
+            color: white;
+        }
+
+        /* Admin Add News Section */
+        .add-news-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px dashed var(--brand-color);
+            margin-top: 40px;
+        }
+
+        .add-news-section h3 {
+            color: var(--brand-dark);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit {
+            background: var(--brand-dark);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: var(--brand-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bar Section -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-section">
+                <!-- الشعار مرتبط باسم bg.jpg كما طلبت -->
+                <img src="bg.jpg" alt="IB GAMES Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/45/7b1fa2/ffffff?text=IB'">
+                <span class="site-title">IB GAMES</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active" onclick="filterNews('all')">الرئيسية</a></li>
+                    <li><a href="#" onclick="filterNews('news')">أخبار</a></li>
+                    <li><a href="#" onclick="filterNews('games')">ألعاب جدد</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="section-header">
+            <h2 class="section-title" id="current-category">آخر الأخبار والألعاب</h2>
+        </div>
+
+        <!-- قائمة عرض الأخبار -->
+        <div class="news-grid" id="news-container"></div>
+
+        <!-- لوحة إضافة خبر جديد (تخدم نظام التزويد الآلي) -->
+        <div class="add-news-section">
+            <h3>➕ إضافة خبر أو لعبة جديدة للموقع:</h3>
+            <form id="addNewsForm">
+                <div class="form-group">
+                    <label>عنوان الخبر أو اللعبة:</label>
+                    <input type="text" id="newsTitle" required placeholder="أدخل العنوان هنا...">
+                </div>
+                <div class="form-group">
+                    <label>القسم:</label>
+                    <select id="newsCategory">
+                        <option value="news">أخبار عالمية</option>
+                        <option value="games">ألعاب جدد</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>وصف قصير:</label>
+                    <input type="text" id="newsSnippet" required placeholder="ملخص سريع للخبر...">
+                </div>
+                <div class="form-group">
+                    <label>التفاصيل الكاملة:</label>
+                    <textarea id="newsFull" rows="4" required placeholder="اكتب تفاصيل الخبر كاملة..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>رابط صورة الخبر (اختياري):</label>
+                    <input type="url" id="newsImage" placeholder="https://example.com/image.jpg">
+                </div>
+                <button type="submit" class="btn-submit">نشر الخبر في الموقع فوراً</button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Modal التفاصيل -->
+    <div class="modal" id="newsModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="color: var(--brand-dark); margin-bottom: 15px;"></h2>
+            <p id="modalBody" style="color: #374151; font-size: 1rem; line-height: 1.8;"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 جميع الحقوق محفوظة لـ <strong>IB GAMES</strong></p>
+    </footer>
+
+    <script>
+        // قائمة الأخبار الأولية (موسعة وأحدث أخبار 2026)
+        let newsData = [
+            {
+                id: 1,
+                category: "news",
+                badge: "أخبار عالمية",
+                date: "سبتمبر 2026",
+                title: "استعراض أسلوب لعب Grand Theft Auto VI يحطم الأرقام القياسية",
+                snippet: "روكستار تكشف عن استعراض موسع لعالم Vice City مع تحسينات هائلة في الذكاء الاصطناعي.",
+                fullText: "واصلت لعبة GTA VI تصدر التريند العالمي بعد نشر تفاصيل رسمية تؤكد وجود تفاعل ديناميكي غير مسبوق للمواطنين وحالة الطقس، تمهيداً للإطلاق في نوفمبر القادم.",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop"
+            },
+            {
+                id: 2,
+                category: "games",
+                badge: "ألعاب جدد",
+                date: "سبتمبر 2026",
+                title: "إطلاق لعبة Monster Hunter Wilds رسمياً وتصدر المبيعات",
+                snippet: "تغطية كاملة لتقييمات اللعبة وطريقة القتال في العالم المفتوح المليء بالوحوش الضخمة.",
+                fullText: "حققت لعبة Monster Hunter Wilds مبيعات قياسية في يومها الأول، حيث أشاد النقاد بتصميم النظام البيئي المباشر وتنوع الأسلحة القتالية.",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop"
+            },
+            {
+                id: 3,
+                category: "games",
+                badge: "ألعاب جدد",
+                date: "سبتمبر 2026",
+                title: "Marvel's Wolverine تكشف عن أسلوب القتال الدموي",
+                snippet: "استديو Insomniac يعرض نظرة ملحمية جديدة لشخصية ولفرين قبل إطلاقها.",
+                fullText: "تقدم لعبة Marvel's Wolverine تجربة قتال حادة وموجهة لفئة المحترفين، مع التركيز على تقنيات المخالب والتحركات السريعة ضد الأعداء.",
+                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop"
+            },
+            {
+                id: 4,
+                category: "news",
+                badge: "أخبار عالمية",
+                date: "سبتمبر 2026",
+                title: "نينتندو تعلن تفاصيل استعراض جهاز Nintendo Switch 2",
+                snippet: "تسريبات وتصريحات رسمية تؤكد دعم تشغيل الألعاب بدقة 4K مع تقنيات معالجة جديدة.",
+                fullText: "أكدت التسريبات الواردة أن نينتندو تستعد لعرض جهازها القادم كلياً لدعم قدرات الجرافيكس العالية مع الحفاظ على سهولة التنقل المحمول.",
+                image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop"
+            }
+        ];
+
+        // عرض الأخبار
+        function renderNews(items) {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                const imgUrl = item.image || 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop';
+                const card = document.createElement('div');
+                card.className = 'news-card';
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${imgUrl}" alt="${item.title}" class="card-img">
+                        <span class="badge">${item.badge}</span>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-date">${item.date}</span>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-snippet">${item.snippet}</p>
+                        <button class="btn-read" onclick="openModal(${item.id})">قراءة التفاصيل</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // فلترة القوائم
+        function filterNews(type) {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(l => l.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (type === 'all') {
+                document.getElementById('current-category').innerText = "آخر الأخبار والألعاب";
+                renderNews(newsData);
+            } else if (type === 'news') {
+                document.getElementById('current-category').innerText = "الأخبار العالمية";
+                renderNews(newsData.filter(item => item.category === 'news'));
+            } else if (type === 'games') {
+                document.getElementById('current-category').innerText = "الألعاب الجديدة";
+                renderNews(newsData.filter(item => item.category === 'games'));
+            }
+        }
+
+        // نظام إضافة خبر جديد آلياً
+        document.getElementById('addNewsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('newsTitle').value;
+            const category = document.getElementById('newsCategory').value;
+            const snippet = document.getElementById('newsSnippet').value;
+            const fullText = document.getElementById('newsFull').value;
+            const image = document.getElementById('newsImage').value;
+
+            const newItem = {
+                id: Date.now(),
+                category: category,
+                badge: category === 'news' ? 'أخبار عالمية' : 'ألعاب جدد',
+                date: "الآن",
+                title: title,
+                snippet: snippet,
+                fullText: fullText,
+                image: image
+            };
+
+            // إضافة الخبر في البداية
+            newsData.unshift(newItem);
+            renderNews(newsData);
+
+            // إعادة ضبط الاستمارة
+            this.reset();
+            alert("تم نشر الخبر بنجاح في أعلى الصفحة!");
+        });
+
+        // Modal
+        function openModal(id) {
+            const item = newsData.find(n => n.id === id);
+            if (item) {
+                document.getElementById('modalTitle').innerText = item.title;
+                document.getElementById('modalBody').innerText = item.fullText;
+                document.getElementById('newsModal').style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').style.display = 'none';
+        }
+
+        renderNews(newsData);
+    </script>
+</body>
+</html>
